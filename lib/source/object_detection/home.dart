@@ -24,26 +24,27 @@ class _HomePageState extends State<HomePage> {
   int _imageHeight = 0;
   int _imageWidth = 0;
   String _model = ssd;
+  loadModel() async {
+    String? res = await Tflite.loadModel(
+      model: "assets/models/ssd_mobilenet.tflite",
+      labels: "assets/models/ssd_mobilenet.txt",
+      // numThreads: 1, // defaults to 1
+      // isAsset:
+      //     true, // defaults to true, set to false to load resources outside assets
+      // useGpuDelegate:
+      //     false // defaults to false, set to true to use GPU delegate
+    );
+
+    print(res);
+  }
 
   @override
   void initState() {
     super.initState();
-    _model = ssd;
+    setState(() {
+      _model = ssd;
+    });
     loadModel();
-  }
-
-  loadModel() async {
-    String? res = await Tflite.loadModel(
-        model: "assets/models/ssd_mobilenet.tflite",
-        labels: "assets/models/ssd_mobilenet.txt",
-        numThreads: 1, // defaults to 1
-        isAsset:
-            true, // defaults to true, set to false to load resources outside assets
-        useGpuDelegate:
-            false // defaults to false, set to true to use GPU delegate
-        );
-
-    print(res);
   }
 
   onSelect() {
