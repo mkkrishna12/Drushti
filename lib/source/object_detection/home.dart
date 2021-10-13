@@ -23,30 +23,32 @@ class _HomePageState extends State<HomePage> {
   List<dynamic>? _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  String _model = "";
+  String _model = ssd;
 
   @override
   void initState() {
     super.initState();
+    _model = ssd;
+    loadModel();
   }
 
   loadModel() async {
     String? res = await Tflite.loadModel(
-      model: "assets/models/ssd_mobilenet.tflite",
-      labels: "assets/models/ssd_mobilenet.txt",
-      // numThreads: 1, // defaults to 1
-      // isAsset:
-      //     true, // defaults to true, set to false to load resources outside assets
-      // useGpuDelegate:
-      //     false // defaults to false, set to true to use GPU delegate
-    );
+        model: "assets/models/ssd_mobilenet.tflite",
+        labels: "assets/models/ssd_mobilenet.txt",
+        numThreads: 1, // defaults to 1
+        isAsset:
+            true, // defaults to true, set to false to load resources outside assets
+        useGpuDelegate:
+            false // defaults to false, set to true to use GPU delegate
+        );
 
     print(res);
   }
 
-  onSelect(model) {
+  onSelect() {
     setState(() {
-      _model = model;
+      _model = ssd;
     });
     loadModel();
   }
@@ -82,18 +84,10 @@ class _HomePageState extends State<HomePage> {
                   RaisedButton(
                     color: Colors.teal,
                     child: const Text(
-                      ssd,
+                      'start',
                       style: TextStyle(color: Colors.black),
                     ),
-                    onPressed: () => onSelect(ssd),
-                  ),
-                  RaisedButton(
-                    color: Colors.teal,
-                    child: const Text(
-                      yolo,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onPressed: () => onSelect(yolo),
+                    onPressed: () => onSelect(),
                   ),
                 ],
               ),
