@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
   String _model = ssd;
   loadModel() async {
     String? res = await Tflite.loadModel(
-      model: "assets/models/ssd_mobilenet.tflite",
-      labels: "assets/models/ssd_mobilenet.txt",
+      model: "assets/models/yolo.tflite",
+      labels: "assets/models/yolo.txt",
       // numThreads: 1, // defaults to 1
       // isAsset:
       //     true, // defaults to true, set to false to load resources outside assets
