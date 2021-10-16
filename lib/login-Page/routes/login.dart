@@ -21,7 +21,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   LoginTheme day;
   LoginTheme night;
   Mode _activeMode = Mode.day;
-
+  InputField email, password;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -128,8 +128,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ToggleButton(
-                    startText: 'Morning Login',
-                    endText: 'Night Login',
+                    startText: 'Login',
+                    endText: 'Registration ',
                     tapCallback: (index) {
                       setState(() {
                         _activeMode = index == 0 ? Mode.day : Mode.night;
@@ -145,13 +145,14 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     fontFamily: 'YesevaOne',
                   ),
                   buildText(
-                    text: 'Mobile Number',
+                    text: 'Email ID',
                     padding: EdgeInsets.only(
                         top: height * 0.06, bottom: height * 0.015),
                     fontSize: width * 0.044,
                   ),
-                  InputField(
-                    hintText: 'Enter your mobile number',
+                  email = InputField(
+                    hintText: 'Enter your Email Id ',
+                    obscureText: false,
                   ),
                   buildText(
                     text: 'Password',
@@ -161,10 +162,14 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     ),
                     fontSize: width * 0.044,
                   ),
-                  InputField(
+                  password = InputField(
                     hintText: 'Enter your password',
+                    obscureText: true,
                   ),
-                  const ArrowButton(),
+                  ArrowButton(
+                      email: email.getEmail1(),
+                      password: password.getPassword1(),
+                      activeMode: _activeMode),
                 ],
               ),
             ),

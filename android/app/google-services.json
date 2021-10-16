@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "263892428939",
+    "project_id": "drushti-sks",
+    "storage_bucket": "drushti-sks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263892428939:android:192d5fcf80d03b72148c8e",
+        "android_client_info": {
+          "package_name": "com.sks.drushti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263892428939-j8p5nig1lc5ua1v4nai21o9o2qj2aa7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHHiTaB11MIxvL0lOT2L7G0acHCtXi6mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263892428939-j8p5nig1lc5ua1v4nai21o9o2qj2aa7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
