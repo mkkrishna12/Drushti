@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:camera/camera.dart';
+import 'package:drushti/routes/login.dart';
 import 'package:flutter/material.dart';
 
-import 'source/object_detection/home.dart';
-
-List<CameraDescription>? cameras;
+List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'RealTime Detection',
-      home: HomePage(cameras!),
+      home: Login(),
     );
   }
 }
