@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'source/object_detection/home.dart';
 
-late List<CameraDescription> cameras;
+List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
