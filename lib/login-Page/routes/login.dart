@@ -1,14 +1,14 @@
-import 'package:drushti/components/arrow_button.dart';
-import 'package:drushti/components/day/sun.dart';
-import 'package:drushti/components/day/sun_rays.dart';
-import 'package:drushti/components/input_field.dart';
-import 'package:drushti/components/night/moon.dart';
-import 'package:drushti/components/night/moon_rays.dart';
-import 'package:drushti/components/toggle_button.dart';
-import 'package:drushti/enums/mode.dart';
-import 'package:drushti/models/login_theme.dart';
-import 'package:drushti/utils/cached_images.dart';
-import 'package:drushti/utils/viewport_size.dart';
+import 'package:drushti/login-Page/components/arrow_button.dart';
+import 'package:drushti/login-Page/components/day/sun.dart';
+import 'package:drushti/login-Page/components/day/sun_rays.dart';
+import 'package:drushti/login-Page/components/input_field.dart';
+import 'package:drushti/login-Page/components/night/moon.dart';
+import 'package:drushti/login-Page/components/night/moon_rays.dart';
+import 'package:drushti/login-Page/components/toggle_button.dart';
+import 'package:drushti/login-Page/enums/mode.dart';
+import 'package:drushti/login-Page/models/login_theme.dart';
+import 'package:drushti/login-Page/utils/cached_images.dart';
+import 'package:drushti/login-Page/utils/viewport_size.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {

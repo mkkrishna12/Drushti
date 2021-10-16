@@ -1,5 +1,5 @@
-import 'package:drushti/utils/custom_icons_icons.dart';
-import 'package:drushti/utils/viewport_size.dart';
+import 'package:drushti/login-Page/utils/custom_icons_icons.dart';
+import 'package:drushti/login-Page/utils/viewport_size.dart';
 import 'package:flutter/widgets.dart';
 
 class ArrowButton extends StatelessWidget {

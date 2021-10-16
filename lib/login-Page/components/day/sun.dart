@@ -1,5 +1,5 @@
-import 'package:drushti/components/gradient_circle.dart';
-import 'package:drushti/utils/viewport_size.dart';
+import 'package:drushti/login-Page/components/gradient_circle.dart';
+import 'package:drushti/login-Page/utils/viewport_size.dart';
 import 'package:flutter/widgets.dart';
 
 class Sun extends AnimatedWidget {
