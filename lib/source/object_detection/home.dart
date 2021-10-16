@@ -20,18 +20,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<dynamic> _recognitions;
+  List<dynamic>? _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  String _model;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  String _model = ssd;
   loadModel() async {
-    String res = await Tflite.loadModel(
+    String? res = await Tflite.loadModel(
       model: "assets/models/ssd_mobilenet.tflite",
       labels: "assets/models/ssd_mobilenet.txt",
       // numThreads: 1, // defaults to 1
@@ -44,9 +38,18 @@ class _HomePageState extends State<HomePage> {
     print(res);
   }
 
-  onSelect(model) {
+  @override
+  void initState() {
+    super.initState();
     setState(() {
-      _model = model;
+      _model = ssd;
+    });
+    loadModel();
+  }
+
+  onSelect() {
+    setState(() {
+      _model = ssd;
     });
     loadModel();
   }
@@ -76,44 +79,36 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: _model == ""
           ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    color: Colors.teal,
-                    child: const Text(
-                      ssd,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onPressed: () => onSelect(ssd),
-                  ),
-                  RaisedButton(
-                    color: Colors.teal,
-                    child: const Text(
-                      yolo,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    onPressed: () => onSelect(yolo),
-                  ),
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              color: Colors.teal,
+              child: const Text(
+                'start',
+                style: TextStyle(color: Colors.black),
               ),
-            )
-          : Stack(
-              children: [
-                Camera(
-                  widget.cameras,
-                  _model,
-                  setRecognitions,
-                ),
-                BndBox(
-                  _recognitions == null ? [] : _recognitions,
-                  math.max(_imageHeight, _imageWidth),
-                  math.min(_imageHeight, _imageWidth),
-                  screen.height,
-                  screen.width,
-                ),
-              ],
+              onPressed: () => onSelect(),
             ),
+          ],
+        ),
+      )
+          : Stack(
+        children: [
+          Camera(
+            widget.cameras,
+            _model,
+            setRecognitions,
+          ),
+          BndBox(
+            _recognitions == null ? [] : _recognitions,
+            math.max(_imageHeight, _imageWidth),
+            math.min(_imageHeight, _imageWidth),
+            screen.height,
+            screen.width,
+          ),
+        ],
+      ),
     );
   }
 }

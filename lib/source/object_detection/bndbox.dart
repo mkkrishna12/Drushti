@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class BndBox extends StatelessWidget {
-  final List<dynamic> results;
+  final List<dynamic>? results;
   final int previewH;
   final int previewW;
   final double screenH;
@@ -20,7 +20,7 @@ class BndBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> _renderBox() {
-      return results.map((re) {
+      return results!.map((re) {
         var _x = re["rect"]["x"];
         var _w = re["rect"]["w"];
         var _y = re["rect"]["y"];
