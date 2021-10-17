@@ -11,6 +11,7 @@ const String ssd = "SSD MobileNet";
 const String yolo = "Tiny YOLOv2";
 
 class HomePage extends StatefulWidget {
+  static const String id = 'homepage';
   final List<CameraDescription> cameras;
 
   HomePage(this.cameras);

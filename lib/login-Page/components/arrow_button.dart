@@ -1,6 +1,7 @@
 import 'package:drushti/login-Page/enums/mode.dart';
 import 'package:drushti/login-Page/utils/custom_icons_icons.dart';
 import 'package:drushti/login-Page/utils/viewport_size.dart';
+import 'package:drushti/source/object_detection/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,13 +17,13 @@ class ArrowButton extends StatelessWidget {
   final Mode activeMode;
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void pushData() async {
+  void pushData(BuildContext context) async {
     try {
       print("$email $password");
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       if (newUser != null) {
-        // Navigator.pushNamed(context, ChatScreen.id);
+        Navigator.pushNamed(context, HomePage.id);
         print("Registered ");
       }
     } catch (e) {
@@ -30,12 +31,12 @@ class ArrowButton extends StatelessWidget {
     }
   }
 
-  void fetchData() async {
+  void fetchData(BuildContext context) async {
     try {
       final newUser = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (newUser != null) {
-        // Navigator.pushNamed(context, ChatScreen.id);
+        Navigator.pushNamed(context, HomePage.id);
         print("Logged in");
       }
     } catch (e) {
@@ -57,9 +58,9 @@ class ArrowButton extends StatelessWidget {
       child: MaterialButton(
         onPressed: () {
           if (activeMode == Mode.day)
-            fetchData();
+            fetchData(context);
           else {
-            pushData();
+            pushData(context);
           }
         },
         child: Container(
