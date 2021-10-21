@@ -1,6 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
+enum TtsState { playing, stopped }
 
 class BndBox extends StatelessWidget {
   final List<dynamic> results;
@@ -8,6 +11,10 @@ class BndBox extends StatelessWidget {
   final int previewW;
   final double screenH;
   final double screenW;
+  double pitch = 1.0;
+  FlutterTts flutterTts = FlutterTts();
+
+  TtsState ttsState = TtsState.stopped;
 
   BndBox(
     this.results,
@@ -16,6 +23,12 @@ class BndBox extends StatelessWidget {
     this.screenH,
     this.screenW,
   );
+
+  Future _speak(String opt) async {
+    await flutterTts.setPitch(0.7);
+    var result = await flutterTts.speak("$opt");
+    if (result == 1) ttsState = TtsState.playing;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,9 @@ class BndBox extends StatelessWidget {
         var _y = re["rect"]["y"];
         var _h = re["rect"]["h"];
         var scaleW, scaleH, x, y, w, h;
-
+        if (re["confidenceInClass"] * 100 > 70) {
+          _speak(re["detectedClass"]);
+        }
         if (screenH / screenW > previewH / previewW) {
           scaleW = screenH / previewH * previewW;
           scaleH = screenH;
