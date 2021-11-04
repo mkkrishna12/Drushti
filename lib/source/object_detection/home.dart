@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 
+import '../Map/home.dart';
 import 'bndbox.dart';
 import 'camera.dart';
 
@@ -55,6 +56,14 @@ class _HomePageState extends State<HomePage> {
     loadModel();
   }
 
+  void goMap(BuildContext context) async {
+    try {
+      Navigator.pushNamed(context, MapTracker.id);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   setRecognitions(recognitions, imageHeight, imageWidth) {
     setState(() {
       _recognitions = recognitions;
@@ -90,6 +99,14 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(color: Colors.black),
                     ),
                     onPressed: () => onSelect(),
+                  ),
+                  RaisedButton(
+                    color: Colors.teal,
+                    child: const Text(
+                      'Map',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () => goMap(context),
                   ),
                 ],
               ),
