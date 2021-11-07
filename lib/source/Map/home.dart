@@ -16,7 +16,7 @@ class MapTracker extends StatefulWidget {
 class _MapTrackerState extends State<MapTracker> {
   String _platformVersion = 'Unknown';
   String _instruction = "";
-  final _origin = WayPoint(
+  var _origin = WayPoint(
       name: "Way Point 1",
       latitude: 38.9111117447887,
       longitude: -77.04012393951416);
@@ -96,7 +96,7 @@ class _MapTrackerState extends State<MapTracker> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Drushti Map'),
         ),
         body: Center(
           child: Column(children: <Widget>[
@@ -104,10 +104,6 @@ class _MapTrackerState extends State<MapTracker> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text('Running on: $_platformVersion\n'),
                     Container(
                       color: Colors.grey,
                       width: double.infinity,
@@ -127,17 +123,18 @@ class _MapTrackerState extends State<MapTracker> {
                           child: const Text("Start A to B"),
                           onPressed: () async {
                             var wayPoints = <WayPoint>[];
+
                             wayPoints.add(_origin);
                             wayPoints.add(_stop1);
 
                             await _directions.startNavigation(
-                                wayPoints: wayPoints,
-                                options: MapBoxOptions(
-                                    mode:
-                                        MapBoxNavigationMode.drivingWithTraffic,
-                                    simulateRoute: false,
-                                    language: "en",
-                                    units: VoiceUnits.metric));
+                              wayPoints: wayPoints,
+                              options: MapBoxOptions(
+                                  mode: MapBoxNavigationMode.drivingWithTraffic,
+                                  simulateRoute: false,
+                                  language: "en",
+                                  units: VoiceUnits.metric),
+                            );
                           },
                         ),
                         const SizedBox(

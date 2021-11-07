@@ -33,7 +33,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLogIn = false;
-  void getCurrentUser() async {
+  Future<bool> getCurrentUser() async {
     try {
       LocationData _locationData = await location.getLocation();
       print(_locationData);
@@ -41,13 +41,16 @@ class _MyAppState extends State<MyApp> {
       if (_user != null) {
         isLogIn = true;
         print("Logged IN");
+        return true;
       } else {
         isLogIn = false;
+        return false;
         print("User is not Logged in");
       }
     } catch (e) {
       print(e);
     }
+    return false;
   }
 
   @override
@@ -61,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'RealTime Detection',
-        initialRoute: isLogIn == true ? HomePage.id : Login.id,
+        initialRoute: getCurrentUser() == true ? HomePage.id : Login.id,
         routes: {
           Login.id: (context) => Login(),
           HomePage.id: (context) => HomePage(cameras),
