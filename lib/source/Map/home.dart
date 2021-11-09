@@ -16,26 +16,16 @@ class MapTracker extends StatefulWidget {
 class _MapTrackerState extends State<MapTracker> {
   String _platformVersion = 'Unknown';
   String _instruction = "";
-  final _origin = WayPoint(
-      name: "Way Point 1",
-      latitude: 38.9111117447887,
-      longitude: -77.04012393951416);
+  final _origin =
+      WayPoint(name: "Way Point 1", latitude: 16.849082, longitude: 74.598878);
   final _stop1 = WayPoint(
-      name: "Way Point 2",
-      latitude: 38.91113678979344,
-      longitude: -77.03847169876099);
+      name: "Way Point 2", latitude: 16.8445014, longitude: 74.6002468);
   final _stop2 = WayPoint(
-      name: "Way Point 3",
-      latitude: 38.91040213277608,
-      longitude: -77.03848242759705);
+      name: "Way Point 3", latitude: 16.8445014, longitude: 74.6002468);
   final _stop3 = WayPoint(
-      name: "Way Point 4",
-      latitude: 38.909650771013034,
-      longitude: -77.03850388526917);
+      name: "Way Point 4", latitude: 16.8445014, longitude: 74.6002468);
   final _stop4 = WayPoint(
-      name: "Way Point 5",
-      latitude: 38.90894949285854,
-      longitude: -77.03651905059814);
+      name: "Way Point 5", latitude: 16.8445014, longitude: 74.6002468);
 
   MapBoxNavigation _directions;
   MapBoxOptions _options;
@@ -63,17 +53,17 @@ class _MapTrackerState extends State<MapTracker> {
     _options = MapBoxOptions(
         //initialLatitude: 36.1175275,
         //initialLongitude: -115.1839524,
-        zoom: 15.0,
-        tilt: 0.0,
+        zoom: 60.0,
+        tilt: 15.0,
         bearing: 0.0,
-        enableRefresh: false,
+        enableRefresh: true,
         alternatives: true,
         voiceInstructionsEnabled: true,
         bannerInstructionsEnabled: true,
         allowsUTurnAtWayPoints: true,
         mode: MapBoxNavigationMode.drivingWithTraffic,
         units: VoiceUnits.imperial,
-        simulateRoute: false,
+        simulateRoute: true,
         animateBuildRoute: true,
         longPressDestinationEnabled: true,
         language: "en");

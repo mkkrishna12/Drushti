@@ -3,11 +3,16 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:drushti/login-Page/routes/login.dart';
 import 'package:drushti/source/object_detection/home.dart';
+// import 'source/voice_assistence/page/home_page.dart';
+import 'package:drushti/source/voice_assistence/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mapbox_navigation/library.dart';
 import 'package:location/location.dart';
+
+// import 'package:speech_recognition/speech_recognition.dart';
 
 import 'source/Map/home.dart';
 
@@ -15,9 +20,14 @@ import 'source/Map/home.dart';
 
 List<CameraDescription> cameras;
 List<MapBoxNavigation> mapbox;
+// SpeechRecognition speech123 = SpeechRecognition();
 Location location = new Location();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Firebase.initializeApp();
   cameras = await availableCameras();
   runApp(MyApp());
@@ -31,6 +41,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  static final String title = 'Voics Assistence';
   FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLogIn = false;
   void getCurrentUser() async {
@@ -45,6 +56,7 @@ class _MyAppState extends State<MyApp> {
         isLogIn = false;
         print("User is not Logged in");
       }
+      print(isLogIn);
     } catch (e) {
       print(e);
     }
@@ -61,11 +73,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'RealTime Detection',
-        initialRoute: isLogIn == true ? HomePage.id : Login.id,
+        // initialRoute: isLogIn == true ? HomePage.id : Login.id,
+        initialRoute: HomePage.id,
         routes: {
           Login.id: (context) => Login(),
           HomePage.id: (context) => HomePage(cameras),
           MapTracker.id: (context) => MapTracker(),
+          TextToSpeech.id: (context) => TextToSpeech(),
         });
   }
 }
